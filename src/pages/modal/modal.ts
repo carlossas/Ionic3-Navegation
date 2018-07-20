@@ -1,17 +1,42 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { ViewController, NavParams } from 'ionic-angular';
 
 @Component({
   selector: 'page-modal',
   templateUrl: 'modal.html',
 })
 export class ModalPage {
+  nombre: string;
+  edad: number;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public viewCtrl: ViewController, public navParams: NavParams) {
+
+    this.nombre = this.navParams.get("nombre");
+    this.edad = this.navParams.get("edad")
+    
+    console.log(this.nombre, this.edad);
+    
+
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ModalPage');
+  cerarrConParametros(){
+
+    let data ={
+      nombre: "Carlos",
+      edad: 21,
+      coords :{
+        latitud: 10,
+        longitud: -10
+      }
+    };
+
+    this.viewCtrl.dismiss(data)
+
   }
+  cerarrSinParametros(){
+    this.viewCtrl.dismiss()
+  }
+
+  
 
 }
